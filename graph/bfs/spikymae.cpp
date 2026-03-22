@@ -51,7 +51,9 @@ int fun(int i , int j , vector<vector<char>> &grid, int n , int m)
         int f = 0; 
         for(int p =0 ; p<4 ; p++)
         {
-            if( (dir[p].first+i <0) || (dir[p].second + j <0) || grid[dir[p].first+i][dir[p].second+j] == '/' || (dir[p].second + j ==m) || (dir[p].second + i == n) ) continue;
+            if( (dir[p].first+i <0) || (dir[p].second + j <0) || (dir[p].second + j ==m) || (dir[p].first + i == n) ) continue;
+            
+            if(grid[dir[p].first+i][dir[p].second+j] == '/') continue;
             
             if(grid[dir[p].first+i][dir[p].second+j] == '#') continue;
             
