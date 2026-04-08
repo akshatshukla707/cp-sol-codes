@@ -23,7 +23,7 @@ public:
             }
         }
         
-        bfs(grid,que);
+        int mins = bfs(grid,que);
 
         for(int i = 0 ; i<n ; i++)
         {
@@ -33,7 +33,7 @@ public:
             }
         }
     
-        return bfs(grid,que);
+        return 
     }
     
     int bfs(vector<vector<int>> &grid , queue<pair<int,int>> &que)
