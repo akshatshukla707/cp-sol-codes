@@ -1,1 +1,82 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+#include<utility>
+using namespace std;
+void countRooms(queue<pair<int,int>> &que, vector<vector<char>> &grid);
+int find(int i , int j , vector<vector<char>> &grid, queue<pair<int,int>> &que);
+using namespace std;
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    
+    vector<vector<char>> grid(n,vector<char>(m));
+    
+    for(int i=0 ; i<n ; i++)
+    {
+        for(int j=0 ; j<m ; j++)
+        {
+            cin>>grid[i][j];
+        }    
+        
+    }
+    
+    int rooms = 0;
+    queue<pair<int,int>> que;
+    for(int i=0 ; i<n ; i++)
+    {
+        for(int j=0 ; j<m ; j++)
+        {
+            if(grid[i][j]=='.')
+            {
+            rooms++;
+            
+            que.push({i,j});
+            countRooms(que,grid);
+            }
+        }    
+        
+    }
+    
+    
+   cout<<rooms; 
+}
+
+void countRooms(queue<pair<int,int>> &que, vector<vector<char>> &grid)
+{
+    
+    
+    vector<pair<int,int>> dir = {{0,1},{1,0},{0,-1},{-1,0}};
+    
+    while(!que.empty())
+    {
+         int i = que.front().first;
+         int j = que.front().second;
+         que.pop();
+         
+         grid[i][j] = '#';
+                  
+         for(int x=0 ; x<4 ; x++)
+            {
+                find(i+dir[x].first , j+dir[x].second , grid , que);
+            }    
+    }  
+}
+
+
+ int find(int i , int j , vector<vector<char>> &grid, queue<pair<int,int>> &que)
+{
+    if(i<0 || j<0 || i >= grid.size() || j >= grid[0].size() ) return 0;
+    
+    if(grid[i][j]=='#') return 0; 
+    
+    if(grid[i][j]=='.')
+    {
+        grid[i][j]='#';
+        que.push({i,j});
+    }
+    
+    return 0;
+}
 
