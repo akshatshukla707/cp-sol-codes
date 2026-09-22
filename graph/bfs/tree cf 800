@@ -24,15 +24,24 @@ int main()
             val = val+1;
             que.push(val);
             parent[val] = que.front();
-            if(val == n) break;
+            if(val == n)
+            { 
+              que.pop();
+              break;
+            } 
+             
             
             
             val = val+1;
             que.push(val);
             parent[val] = que.front();
-            if(val == n) break;
+            if(val == n)
+            { 
+              que.pop();
+              break;
+            } 
                 
-            que.pop();
+        
        }
        
        int finalVal = n ;
