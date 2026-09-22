@@ -1,0 +1,61 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    
+    while(t!=0)
+    {
+       int n;
+       cin>>n;
+       
+       vector<int> parent(n+1,0);
+       queue<int>  que;
+       int val=1;
+       que.push(1);
+       
+       while(que.front()!=n)
+       {
+            val = val+1;
+            que.push(val);
+            parent[val] = que.front();
+            if(val == n) break;
+            
+            
+            val = val+1;
+            que.push(val);
+            parent[val] = que.front();
+            if(val == n) break;
+                
+            que.pop();
+       }
+       
+       int finalVal = n ;
+       val = n ; 
+       
+       do
+       {
+            finalVal = finalVal + parent[val];
+            val = parent[val];
+       }
+       while(val != 1);
+       
+       cout<<finalVal<<"\n";
+       
+       
+       
+       
+       
+       t--;
+        
+    }    
+    
+
+    return 0;
+}
+ 
